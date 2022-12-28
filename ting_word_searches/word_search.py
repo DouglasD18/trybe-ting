@@ -24,4 +24,25 @@ def exists_word(word, instance: Queue()):
 
 
 def search_by_word(word, instance):
-    """Aqui irá sua implementação"""
+    lower = word.lower()
+    length = len(instance)
+    lista = []
+    for index in range(length):
+        data = instance.search(index)
+        lines = data["linhas_do_arquivo"]
+        occurences = []
+        for number in range(len(lines)):
+            if lower in lines[number].lower():
+                occurences.append({
+                    "linha": number + 1,
+                    "conteudo": lines[number]
+                })
+
+        if len(occurences):
+            lista.append({
+                "palavra": word,
+                "arquivo": data["nome_do_arquivo"],
+                "ocorrencias": occurences
+            })
+
+    return lista
