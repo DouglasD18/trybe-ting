@@ -28,5 +28,9 @@ def remove(instance: Queue()):
     print("Não há elementos", file=sys.stdout)
 
 
-def file_metadata(instance, position):
-    """Aqui irá sua implementação"""
+def file_metadata(instance: Queue(), position):
+    if len(instance) > position and position >= 0:
+        data = instance.search(position)
+        print(data, file=sys.stdout)
+
+    print("Posição inválida", file=sys.stderr)
